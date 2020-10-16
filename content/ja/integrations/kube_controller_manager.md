@@ -1,6 +1,7 @@
 ---
 assets:
-  dashboards: {}
+  dashboards:
+    kube_controller_manager: assets/dashboards/overview.json
   logs: {}
   metrics_metadata: metadata.csv
   monitors: {}
@@ -13,6 +14,7 @@ ddtype: check
 dependencies:
   - 'https://github.com/DataDog/integrations-core/blob/master/kube_controller_manager/README.md'
 display_name: Kubernetes Controller Manager
+draft: false
 git_integration_title: kube_controller_manager
 guid: 34156dda-9288-4968-962b-6b29e1753d33
 integration_id: kube-controller-manager

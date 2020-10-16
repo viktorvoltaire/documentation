@@ -142,7 +142,7 @@ Use this in addition to the global configuration for any integrations that submi
 
 Integration names can be found on the [integrations table][1].
 
-[1]: /tracing/setup/java/#integrations
+[1]: /tracing/compatibility_requirements/java/#compatibility
 {{% /tab %}}
 {{% tab "Python" %}}
 
@@ -158,7 +158,7 @@ Use this in addition to the global configuration for any integrations that submi
 
 **Note**: Several integrations require non-standard configuration due to the integration-specific implementation of the tracer. Consult the library documentation on [App Analytics][1] for details.
 
-[1]: http://pypi.datadoghq.com/trace/docs/advanced_usage.html#trace_search_analytics
+[1]: https://ddtrace.readthedocs.io/en/stable/advanced_usage.html#trace_search_analytics
 {{% /tab %}}
 {{% tab "Ruby" %}}
 
@@ -254,7 +254,7 @@ Use this in addition to the global configuration for any integrations that submi
 
 Integration names can be found on the [integrations table][1].
 
-[1]: /tracing/setup/php/#integrations
+[1]: /tracing/setup/php/#integration-names
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -364,6 +364,10 @@ class MyClass {
   }
 }
 ```
+**Note:** App analytics for [dd.trace.methods][8] or [trace annotations][9] spans can be enabled by setting `-Ddd.trace-annotation.analytics.enabled=true`.
+
+[8]: https://docs.datadoghq.com/tracing/custom_instrumentation/java/#dd-trace-methods
+[9]: https://docs.datadoghq.com/tracing/custom_instrumentation/java/#trace-annotations
 
 {{% /tab %}}
 {{% tab "Python" %}}
