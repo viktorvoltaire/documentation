@@ -5761,6 +5761,7 @@ components:
     Series:
       description: 'A metric to submit to Datadog.
 
+
         See [Datadog metrics](https://docs.datadoghq.com/developers/metrics/#custom-metrics-properties).'
       properties:
         host:
