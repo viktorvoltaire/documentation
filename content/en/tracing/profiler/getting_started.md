@@ -17,7 +17,7 @@ further_reading:
 
 Profiler is shipped within the following tracing libraries. Select your language below to learn how to enable profiler for your application:
 
-To get notified when a private beta is available for the **Node**, **Ruby**, **PHP**, or **.NET** Profiler, [sign up here][2].
+To get notified when a private beta is available for the **Node**, **Ruby**, **PHP**, or **.NET** Profiler, [sign up here][6].
 
 {{< tabs >}}
 {{% tab "Java" %}}
@@ -220,6 +220,7 @@ The Datadog Profiler requires Go 1.12+. To begin profiling applications:
 [3]: https://app.datadoghq.com/profiling
 [4]: /tracing/visualization/#services
 [5]: /tracing/guide/setting_primary_tags_to_scope/#environment
+[6]: https://docs.google.com/forms/d/e/1FAIpQLScb9GKmKfSoY6YNV2Wa5P8IzUn02tA7afCahk7S0XHfakjYQw/viewform
 {{% /tab %}}
 
 {{< /tabs >}}
