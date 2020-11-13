@@ -17,13 +17,13 @@ further_reading:
 
 ## Why use a Proxy
 
-If your network configuration restricted outbound traffic, proxy all Agent traffic through one or several hosts that have more permissive outbound policies.
+If your network configuration restricted outbound traffic you have the option of proxying all Agent traffic through one or several hosts with more permissive outbound policies.
 
+Datadog agents v.6.19 / v.7.19 or newer default HTTPs outbound 
 A few options are available to send traffic to Datadog over SSL/TLS for hosts that are not directly connected to the Internet.
 
 1. Using a web proxy (e.g. Squid, Microsoft Web Proxy) that is already deployed in your network
 2. Using HAProxy (if you want to proxy **more than 16-20 Agents** through the same proxy)
-3. Using the Agent as a proxy (for **up to 16 Agents** per proxy, **only on Agent v5** )
 
 ## Using a Web Proxy as Proxy
 
