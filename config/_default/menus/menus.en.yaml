@@ -2938,6 +2938,10 @@ api_v1:
     parent: Synthetics
     url: '#delete-tests'
     generated: true
+  - name: Trigger some Synthetics tests
+    parent: Synthetics
+    url: '#trigger-some-synthetics-tests'
+    generated: true
   - name: Trigger some Synthetics tests for CI
     parent: Synthetics
     url: '#trigger-some-synthetics-tests-for-ci'
