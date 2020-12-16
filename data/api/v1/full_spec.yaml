@@ -1822,6 +1822,119 @@ components:
       type: string
       x-enum-varnames:
       - EVENT_TIMELINE
+    FormulaAndFunctionMetricDataSource:
+      description: The data source being queried.
+      enum:
+      - metrics
+      example: metrics
+      type: string
+      x-enum-varnames:
+      - METRICS
+    FormulaAndFunctionOrder:
+      description: The sort order for results.
+      enum:
+      - asc
+      - desc
+      type: string
+      x-enum-varnames:
+      - ASC
+      - DESC
+    FormulaAndFunctionQueryDefinition:
+      description: Define a formula and function query.
+      oneOf:
+      - $ref: '#/components/schemas/TimeSeriesFormulaAndFunctionMetricQueryDefinition'
+      - $ref: '#/components/schemas/TimeSeriesFormulasAndFunctionEventQueryDefinition'
+      - $ref: '#/components/schemas/TimeSeriesFormulaAndFunctionProcessQueryDefinition'
+      type: object
+    FormulaAndFunctionResponseFormat:
+      description: Timeseries or Scalar response.
+      enum:
+      - timeseries
+      - scalar
+      type: string
+      x-enum-varnames:
+      - TIMESERIES
+      - SCALAR
+    FormulaAndFunctionsAggregation:
+      description: The aggregation method.
+      enum:
+      - avg
+      - min
+      - max
+      - sum
+      - last
+      example: avg
+      type: string
+      x-enum-varnames:
+      - AVG
+      - MIN
+      - MAX
+      - SUM
+      - LAST
+    FormulaAndFunctionsEventAggregation:
+      description: The aggregation method.
+      enum:
+      - count
+      - cardinality
+      - pc75
+      - pc90
+      - pc95
+      - pc98
+      - pc99
+      - sum
+      - min
+      - max
+      - avg
+      example: avg
+      type: string
+      x-enum-varnames:
+      - COUNT
+      - CARDINALITY
+      - PC75
+      - PC90
+      - PC95
+      - PC98
+      - PC99
+      - SUM
+      - MIN
+      - MAX
+      - AVG
+    FormulaAndFunctionsEventsDataSource:
+      description: The data source being queried.
+      enum:
+      - logs
+      - analyzed_spans
+      - network
+      - rum
+      - security_signals
+      - profiles
+      example: logs
+      type: string
+      x-enum-varnames:
+      - LOGS
+      - ANALYZED_SPANS
+      - NETWORK
+      - RUM
+      - SECURITY_SIGNALS
+      - PROFILES
+    FormulaAndFunctionsEventsType:
+      description: How to sort the results.
+      enum:
+      - alphabetical
+      - measure
+      type: string
+      x-enum-varnames:
+      - ALPHABETICAL
+      - MEASURE
+    FormulaAndFunctionsProcessQueryDataSource:
+      description: Source of data.
+      enum:
+      - process
+      - container
+      type: string
+      x-enum-varnames:
+      - PROCESS
+      - CONTAINER
     FreeTextWidgetDefinition:
       description: Free text is a widget that allows you to add headings to your screenboard.
         Commonly used to state the overall purpose of the dashboard. Only available
@@ -8277,6 +8390,139 @@ components:
       - STRING
       - INTEGER
       - DOUBLE
+    TimeSeriesFormulaAndFunctionMetricQueryDefinition:
+      description: Timeseries formula and functions metrics query.
+      example:
+        data_source: metrics
+        query: avg:system.cpu.user{*}
+      properties:
+        aggregator:
+          $ref: '#/components/schemas/FormulaAndFunctionsAggregation'
+        data_source:
+          $ref: '#/components/schemas/FormulaAndFunctionMetricDataSource'
+        name:
+          description: Name of the query.
+          example: mcnulty_query
+          type: string
+        query:
+          description: Widget query.
+          example: avg:system.cpu.user{*}
+          type: string
+      required:
+      - data_source
+      - query
+      type: object
+    TimeSeriesFormulaAndFunctionProcessQueryDefinition:
+      description: Process query using formulas and functions
+      properties:
+        aggregator:
+          $ref: '#/components/schemas/FormulaAndFunctionsAggregation'
+        data_source:
+          $ref: '#/components/schemas/FormulaAndFunctionsProcessQueryDataSource'
+        is_normalized_cpu:
+          description: Whether to normalize the data.
+          type: boolean
+        limit:
+          description: Number of hits to return.
+          format: int64
+          type: integer
+        metric:
+          description: Metric name.
+          example: avg:system.cpu.user{*}
+          type: string
+        name:
+          description: Name of query.
+          type: string
+        sort:
+          $ref: '#/components/schemas/FormulaAndFunctionOrder'
+        tag_filters:
+          description: An array of tags to filter by.
+          items:
+            description: One of the tags to filter by.
+            type: string
+          type: array
+        text_filter:
+          description: Text to use as filter.
+          type: string
+      required:
+      - data_source
+      - metric
+      type: object
+    TimeSeriesFormulasAndFunctionEventQueryDefinition:
+      description: Timeseries formula and functions events query.
+      properties:
+        compute:
+          description: Define computation for a log query.
+          properties:
+            aggregation:
+              $ref: '#/components/schemas/FormulaAndFunctionsEventAggregation'
+            metric:
+              description: Your chosen metric.
+              example: avg:system.cpu.user{*}
+              type: string
+          required:
+          - aggregation
+          type: object
+        data_source:
+          $ref: '#/components/schemas/FormulaAndFunctionsEventsDataSource'
+        group_by:
+          description: Prefix to group by.
+          properties:
+            facet:
+              description: Event facet.
+              example: Event facet.
+              type: string
+            limit:
+              description: Number of hits to return.
+              format: int64
+              type: integer
+            sort:
+              description: Data sorting methods.
+              properties:
+                aggregation:
+                  $ref: '#/components/schemas/FormulaAndFunctionsEventAggregation'
+                metric:
+                  description: Your chosen metric.
+                  type: string
+                order:
+                  $ref: '#/components/schemas/FormulaAndFunctionOrder'
+                type:
+                  $ref: '#/components/schemas/FormulaAndFunctionsEventsType'
+              required:
+              - aggregation
+              type: object
+          required:
+          - facet
+          type: object
+        indexes:
+          description: An array of index names to query in the stream. Use [] to query
+            all indexes at once.
+          example:
+          - days-3
+          - days-7
+          items:
+            description: One of the log indexes set up for your organization. [Multiple
+              Indexes](https://docs.datadoghq.com/logs/indexes/#multiple-indexes)
+            type: string
+          type: array
+        name:
+          description: Name of the query.
+          example: mcnulty_query_errors
+          type: string
+        search:
+          description: Search string.
+          properties:
+            query:
+              description: Events search string.
+              example: service:mcnulty-query Errors
+              type: string
+          required:
+          - query
+          type: object
+      required:
+      - data_source
+      - compute
+      type: object
     TimeseriesWidgetDefinition:
       description: The timeseries visualization allows you to display the evolution
         of one or more metrics, log events, or Indexed Spans over time.
@@ -8347,6 +8593,11 @@ components:
           $ref: '#/components/schemas/WidgetDisplayType'
         event_query:
           $ref: '#/components/schemas/LogQueryDefinition'
+        formulas:
+          description: List of formulas
+          items:
+            $ref: '#/components/schemas/WidgetFormula'
+          type: array
         log_query:
           $ref: '#/components/schemas/LogQueryDefinition'
         metadata:
@@ -8375,6 +8626,13 @@ components:
         q:
           description: Widget query.
           type: string
+        queries:
+          description: Used to define expression aliases.
+          items:
+            $ref: '#/components/schemas/FormulaAndFunctionQueryDefinition'
+          type: array
+        response_format:
+          $ref: '#/components/schemas/FormulaAndFunctionResponseFormat'
         rum_query:
           $ref: '#/components/schemas/LogQueryDefinition'
         security_query:
@@ -10372,6 +10630,28 @@ components:
       required:
       - column
       - order
+      type: object
+    WidgetFormula:
+      description: Formula to be used in a widget query.
+      properties:
+        alias:
+          description: Expression alias.
+          type: string
+        formula:
+          description: Expression utilizing formulas.
+          example: func(a) + b
+          type: string
+        limit:
+          description: Parameters to manipulate resulting set.
+          properties:
+            count:
+              description: Number of results to return.
+              type: integer
+            order:
+              $ref: '#/components/schemas/FormulaAndFunctionOrder'
+          type: object
+      required:
+      - formula
       type: object
     WidgetGrouping:
       description: The kind of grouping to use.
