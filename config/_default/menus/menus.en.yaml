@@ -2914,6 +2914,22 @@ api_v1:
     parent: Service Level Objectives
     url: '#check-if-slos-can-be-safely-deleted'
     generated: true
+  - name: Create an SLO correction
+    parent: Service Level Objectives
+    url: '#create-an-slo-correction'
+    generated: true
+  - name: Delete an SLO Correction
+    parent: Service Level Objectives
+    url: '#delete-an-slo-correction'
+    generated: true
+  - name: Get an SLO correction for an SLO
+    parent: Service Level Objectives
+    url: '#get-an-slo-correction-for-an-slo'
+    generated: true
+  - name: Update an SLO Correction
+    parent: Service Level Objectives
+    url: '#update-an-slo-correction'
+    generated: true
   - name: Delete a SLO
     parent: Service Level Objectives
     url: '#delete-a-slo'

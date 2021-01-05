@@ -5493,6 +5493,80 @@ components:
             type: object
           type: array
       type: object
+    SLOCorrectionRequest:
+      description: An object that defines a correction to be applied to an SLO
+      properties:
+        data:
+          description: The data object associated with the SLO correction
+          properties:
+            attributes:
+              $ref: '#/components/schemas/SLOCorrectionRequestAttributes'
+            type:
+              description: Should always be set to "correction"
+              type: string
+          type: object
+      type: object
+    SLOCorrectionRequestAttributes:
+      description: The attribute object associated with the SLO correction
+      properties:
+        category:
+          description: Category the correction belongs to. Value must be one of "Scheduled
+            Maintenance", "Outside Business Hours", "Deployment", or "Other"
+          type: string
+        description:
+          description: Description of the correction being made.
+          type: string
+        end:
+          description: Ending time of the correction in epoch seconds
+          type: integer
+        slo_id:
+          description: ID of the SLO that this correction will be applied to
+          type: string
+        start:
+          description: Starting time of the correction in epoch seconds
+          type: integer
+        timezone:
+          description: Timezone of the timestamps provided
+          type: string
+      type: object
+    SLOCorrectionResponse:
+      description: The response object of a created SLO correction
+      properties:
+        data:
+          description: The data object associated with the SLO correction
+          properties:
+            attributes:
+              $ref: '#/components/schemas/SLOCorrectionResponseAttributes'
+            type:
+              description: Should always return "correction"
+              type: string
+          type: object
+      type: object
+    SLOCorrectionResponseAttributes:
+      description: The attribute object associated with the SLO correction
+      properties:
+        category:
+          description: Category the correction belongs to. Value must be one of "Scheduled
+            Maintenance", "Outside Business Hours", "Deployment", or "Other"
+          type: string
+        creator:
+          $ref: '#/components/schemas/Creator'
+        description:
+          description: Description of the correction being made.
+          type: string
+        end:
+          description: Ending time of the correction in epoch seconds
+          type: integer
+        slo_id:
+          description: ID of the SLO that this correction will be applied to
+          type: string
+        start:
+          description: Starting time of the correction in epoch seconds
+          type: integer
+        timezone:
+          description: Timezone of the timestamps provided
+          type: string
+      type: object
     SLODeleteResponse:
       description: A response list of all service level objective deleted.
       properties:
@@ -17449,6 +17523,155 @@ paths:
       - Service Level Objectives
       x-undo:
         type: safe
+  /api/v1/slo/correction:
+    post:
+      description: Create an SLO Correction
+      operationId: CreateSLOCorrection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SLOCorrectionRequest'
+        description: Create an SLO Correction
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SLOCorrectionResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+      summary: Create an SLO correction
+      tags:
+      - Service Level Objectives
+      x-codegen-request-body-name: body
+      x-undo:
+        type: unsafe
+  /api/v1/slo/correction/{slo_correction_id}:
+    delete:
+      description: Permanently delete the specified SLO Correction object
+      operationId: DeleteSLOCorrection
+      parameters:
+      - description: The ID of the SLO correction object
+        in: path
+        name: slo_correction_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not found
+      summary: Delete an SLO Correction
+      tags:
+      - Service Level Objectives
+      x-undo:
+        type: idempotent
+    get:
+      description: Get an SLO Correction
+      operationId: GetSLOCorrection
+      parameters:
+      - description: The ID of the SLO correction object
+        in: path
+        name: slo_correction_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SLOCorrectionResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+      summary: Get an SLO correction for an SLO
+      tags:
+      - Service Level Objectives
+      x-undo:
+        type: safe
+    put:
+      description: Update the specified SLO correction object object
+      operationId: UpdateSLOCorrection
+      parameters:
+      - description: The ID of the SLO correction object
+        in: path
+        name: slo_correction_id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SLOCorrectionRequest'
+        description: The edited SLO correction object.
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SLOCorrectionResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Not Found
+      summary: Update an SLO Correction
+      tags:
+      - Service Level Objectives
+      x-codegen-request-body-name: body
+      x-undo:
+        type: idempotent
   /api/v1/slo/{slo_id}:
     delete:
       description: 'Permanently delete the specified service level objective object.
