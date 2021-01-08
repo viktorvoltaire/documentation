@@ -247,7 +247,7 @@ link-check-preview:
 		aws s3 cp --content-type "text/csv; charset=utf-8" --acl "public-read" --cache-control "no-cache" ${CI_PROJECT_DIR}/broken-links.csv s3://origin-static-assets/documentation/brokenlinks/${CI_COMMIT_REF_NAME}/; fi
 
 check-missing-tms:
-	@source /usr/local/bin/helpers.sh && check_missing_tms
+	find ${ARTIFACT_RESOURCE} -type f -name \*.html | go run check_missing_tms.go # TODO move this to the base image. add step tracking?
 
 sourcemaps-preview-ignore-errors:
 	@yarn run build:webpack:preview -- --devtool source-map || true
