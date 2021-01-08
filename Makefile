@@ -1,6 +1,7 @@
 # make
 .PHONY: clean clean-all clean-build clean-examples clean-go-examples clean-java-examples clean-exe clean-integrations clean-auto-doc clean-node clean-virt help start stop
 .DEFAULT_GOAL := help
+SHELL := /bin/bash
 PY3=$(shell if [ `which pyenv` ]; then \
 				if [ `pyenv which python3` ]; then \
 					printf `pyenv which python3`; \
