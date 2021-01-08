@@ -246,8 +246,8 @@ link-check-preview:
 		aws s3 cp --content-type "text/csv; charset=utf-8" --acl "public-read" --cache-control "no-cache" ${CI_PROJECT_DIR}/broken-links.csv s3://origin-static-assets/documentation/brokenlinks/${CI_COMMIT_REF_NAME}/; fi
 
 check-missing-tms:
-	@check_missing_tms
+	@source /usr/local/bin/helpers.sh && check_missing_tms
 
 sourcemaps-preview-ignore-errors:
 	@yarn run build:webpack:preview -- --devtool source-map || true
-	DATADOG_API_KEY="$(shell get_secret 'dd_synthetic_api_key_prod')" ./node_modules/.bin/datadog-ci sourcemaps upload ./public/static --service docs --minified-path-prefix "https://docs-staging.datadoghq.com/${CI_COMMIT_REF_NAME}/static/" --release-version "${CI_COMMIT_SHORT_SHA}" || true
+	DATADOG_API_KEY="$(shell source /usr/local/bin/helpers.sh && get_secret 'dd_synthetic_api_key_prod')" ./node_modules/.bin/datadog-ci sourcemaps upload ./public/static --service docs --minified-path-prefix "https://docs-staging.datadoghq.com/${CI_COMMIT_REF_NAME}/static/" --release-version "${CI_COMMIT_SHORT_SHA}" || true
