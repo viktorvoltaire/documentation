@@ -35,7 +35,7 @@ cache: &cache
   image: 486234852809.dkr.ecr.us-east-1.amazonaws.com/ci/corp-ci:master
   tags:
     - "runner:main"
-    - "size:large"
+    - "size:2xlarge"
   except:
     - tags
   only:
