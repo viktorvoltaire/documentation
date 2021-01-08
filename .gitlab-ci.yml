@@ -69,6 +69,7 @@ build_preview:
     CONFIGURATION_FILE: "./local/bin/py/build/configurations/pull_config_preview.yaml"
     LOCAL: "False"
   script:
+    - wget https://golang.org/dl/go1.13.12.linux-amd64.tar.gz && tar -C /usr/local -xzf go1.13.12.linux-amd64.tar.gz && echo "PATH=\$PATH:/usr/local/go/bin/" >> ~/.bashrc && . ~/.bashrc
     - mkdir logs
     - post_dd_event "documentation deploy ${CI_COMMIT_REF_NAME} started" "${CI_PROJECT_URL}/pipelines/${CI_PIPELINE_ID}" "info"
     - touch Makefile.config
