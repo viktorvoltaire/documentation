@@ -916,7 +916,7 @@ components:
           nullable: true
           type: array
         title:
-          description: Title of the dashboard.
+          description: Title of the current dashboard.
           example: ''
           type: string
         url:
