@@ -3395,18 +3395,6 @@ api:
     url: /api/latest/logs/
     identifier: logs
     generated: true
-  - name: Get a quick list of logs
-    url: '#get-a-quick-list-of-logs'
-    identifier: get-a-quick-list-of-logs
-    parent: logs
-    generated: true
-    params:
-      versions:
-        - v2
-      operationids:
-        - ListLogsGet
-      unstable:
-        - v2
   - name: Aggregate events
     url: '#aggregate-events'
     identifier: aggregate-events
