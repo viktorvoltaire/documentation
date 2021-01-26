@@ -29,7 +29,7 @@ def test_link(link): # test link
     try: # prep to create request headers
         user_agent = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)'
         headers = { 'User-Agent' : user_agent }
-        req = Request(url=link, headers=headers, method='HEAD')
+        req = Request(url=link, headers=headers, method='GET')
         context = ssl._create_unverified_context()
         conn = urlopen(req, context=context)
         # Check if code is not 200 or 302. If it's not, put it in list of invalid links.
