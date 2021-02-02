@@ -30,17 +30,18 @@ The `ddtrace` library includes support for a number of web frameworks, including
 | [asgi][3]                 | >= 2.0            | https://ddtrace.readthedocs.io/en/stable/integrations.html#asgi    |
 | [aiohttp][4]              | >= 1.2            | https://ddtrace.readthedocs.io/en/stable/integrations.html#aiohttp |
 | [Bottle][5]               | >= 0.11           | https://ddtrace.readthedocs.io/en/stable/integrations.html#bottle  |
-| [Django][6]               | >= 1.8            | https://ddtrace.readthedocs.io/en/stable/integrations.html#django  |
-| [djangorestframework][6]  | >= 3.4            | https://ddtrace.readthedocs.io/en/stable/integrations.html#django  |
-| [Falcon][7]               | >= 1.0            | https://ddtrace.readthedocs.io/en/stable/integrations.html#falcon  |
-| [Flask][8]                | >= 0.10           | https://ddtrace.readthedocs.io/en/stable/integrations.html#flask   |
-| [Molten][9]               | >= 0.7.0          | https://ddtrace.readthedocs.io/en/stable/integrations.html#molten  |
-| [Pylons][10]              | >= 0.9.6          | https://ddtrace.readthedocs.io/en/stable/integrations.html#pylons  |
-| [Pyramid][11]             | >= 1.7            | https://ddtrace.readthedocs.io/en/stable/integrations.html#pyramid |
-| [pytest][12]              | >= 3.0            | https://ddtrace.readthedocs.io/en/stable/integrations.html#pytest  |
-| [Sanic][13]               | >= 19.6.0         | https://ddtrace.readthedocs.io/en/stable/integrations.html#sanic   |
-| [Starlette][14]           | >= 0.13.0         | https://ddtrace.readthedocs.io/en/stable/integrations.html#starlette |
-| [Tornado][15]             | >= 4.0            | https://ddtrace.readthedocs.io/en/stable/integrations.html#tornado |
+| [CherryPy][6]            | >= 11.2.0         | https://ddtrace.readthedocs.io/en/stable/integrations.html#cherrypy|
+| [Django][7]               | >= 1.8            | https://ddtrace.readthedocs.io/en/stable/integrations.html#django  |
+| [djangorestframework][7]  | >= 3.4            | https://ddtrace.readthedocs.io/en/stable/integrations.html#django  |
+| [Falcon][8]               | >= 1.0            | https://ddtrace.readthedocs.io/en/stable/integrations.html#falcon  |
+| [Flask][9]                | >= 0.10           | https://ddtrace.readthedocs.io/en/stable/integrations.html#flask   |
+| [Molten][10]               | >= 0.7.0          | https://ddtrace.readthedocs.io/en/stable/integrations.html#molten  |
+| [Pylons][11]              | >= 0.9.6          | https://ddtrace.readthedocs.io/en/stable/integrations.html#pylons  |
+| [Pyramid][12]             | >= 1.7            | https://ddtrace.readthedocs.io/en/stable/integrations.html#pyramid |
+| [pytest][13]              | >= 3.0            | https://ddtrace.readthedocs.io/en/stable/integrations.html#pytest  |
+| [Sanic][14]               | >= 19.6.0         | https://ddtrace.readthedocs.io/en/stable/integrations.html#sanic   |
+| [Starlette][15]           | >= 0.13.0         | https://ddtrace.readthedocs.io/en/stable/integrations.html#starlette |
+| [Tornado][16]             | >= 4.0            | https://ddtrace.readthedocs.io/en/stable/integrations.html#tornado |
 
 
 ### Datastore Compatibility
@@ -49,7 +50,7 @@ The `ddtrace` library includes support for the following data stores:
 
 | Datastore                          | Supported Version | Library Documentation                                                                         |
 | ---------------------------------- | ----------------- | --------------------------------------------------------------------------------------------- |
-| [algoliasearch][16]                | >= 1.20.0         | https://ddtrace.readthedocs.io/en/stable/integrations.html#algoliasearch                       |
+| [algoliasearch][6]                | >= 1.20.0         | https://ddtrace.readthedocs.io/en/stable/integrations.html#algoliasearch                       |
 | [Cassandra][17]                    | >= 3.5            | https://ddtrace.readthedocs.io/en/stable/integrations.html#cassandra                           |
 | [Elasticsearch][18]                | >= 1.6            | https://ddtrace.readthedocs.io/en/stable/integrations.html#elasticsearch                       |
 | [Flask Cache][19]                  | >= 0.12           | https://ddtrace.readthedocs.io/en/stable/integrations.html#flask-cache                         |
@@ -102,17 +103,17 @@ The `ddtrace` library includes support for the following libraries:
 [3]: http://asgi.readthedocs.io/
 [4]: https://aiohttp.readthedocs.io
 [5]: https://bottlepy.org
-[6]: https://www.djangoproject.com
-[7]: https://falconframework.org
-[8]: http://flask.pocoo.org
-[9]: https://moltenframework.com
-[10]: http://pylonsproject.org
-[11]: https://trypyramid.com
-[12]: https://docs.pytest.org/en/stable/
-[13]: https://sanic.readthedocs.io/en/latest/
-[14]: https://www.starlette.io/
-[15]: http://www.tornadoweb.org
-[16]: https://www.algolia.com/doc/
+[6]: https://www.algolia.com/doc/
+[7]: https://www.djangoproject.com
+[8]: https://falconframework.org
+[9]: http://flask.pocoo.org
+[10]: https://moltenframework.com
+[11]: http://pylonsproject.org
+[12]: https://trypyramid.com
+[13]: https://docs.pytest.org/en/stable/
+[14]: https://sanic.readthedocs.io/en/latest/
+[15]: https://www.starlette.io/
+[16]: http://www.tornadoweb.org
 [17]: https://cassandra.apache.org
 [18]: https://www.elastic.co/products/elasticsearch
 [19]: https://pythonhosted.org/Flask-Cache
