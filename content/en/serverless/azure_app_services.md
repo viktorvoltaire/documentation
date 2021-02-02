@@ -71,7 +71,7 @@ The Datadog extension for Azure App Services provides additional monitoring capa
 7. Stop your application: click **Stop**.
 8. Go to the Azure extenstions page and select the Datadog APM extension.
     {{< img src="infrastructure/serverless/azure_app_services/extension.png" alt="Datadog extension" >}}
-9. Accept the legal terms, click **OK**, and wait for the installation to complete.
+9. Accept the legal terms, click **OK**, and wait for the installation to complete. **Note**: the web app must be in a stopped state for this step to complete successfully.
 10. Start the main application: click **Start**.
     {{< img src="infrastructure/serverless/azure_app_services/restart.png" alt="Stop and restart page" >}}
 
