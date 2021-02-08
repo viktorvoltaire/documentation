@@ -116,7 +116,7 @@ window.DD_RUM &&
 
 **Note**: Follow the [Datadog naming convention][3] for a better correlation of your data across the product.
 
-### Read the global context
+## Read the global context
 
 Read the global context with the `getRumGlobalContext()` API:
 
