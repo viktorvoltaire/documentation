@@ -1,5 +1,5 @@
 ---
-title: RUM Advanced Configuration
+title: Initializing RUM
 kind: documentation
 aliases:
   - /real_user_monitoring/installation/advanced_configuration/
@@ -16,14 +16,14 @@ further_reading:
     - link: 'real_user_monitoring/browser/tracking_user_actions'
       tag: 'Documentation'
       text: 'Tracking custom user actions'
+    - link: 'real_user_monitoring/browser/attaching_context'
+      tag: 'Documentation'
+      text: 'Attaching context to RUM data'
 ---
 
-## Initialization
+## Scrub sensitive data from your RUM data
 
-Find below the different initialization options available with the [Datadog Browser SDK][1].
-
-### Scrub sensitive data from your RUM data
-If your RUM data contains sensitive information that need redacting, configure the Browser SDK to scrub sensitive sequences by using the `beforeSend` callback when you initialize RUM.
+If your RUM data contains sensitive information that needs redacting, configure the Browser SDK to scrub sensitive sequences by using the `beforeSend` callback when you initialize RUM.
 
 This callback function gives you access to every event collected by the RUM SDK before they get sent to Datadog.
 
@@ -89,9 +89,10 @@ You can update the following event properties:
 |   `error.resource.url`  |   String  |   The resource URL that triggered the error.                                                        |
 |   `resource.url`        |   String  |   The resource URL.                                                                                 |
 
-**Note**: The RUM SDK will ignore modifications made to event properties not listed above. Find out about all event properties on the [Browser SDK repository][2].
+**Note**: The RUM SDK will ignore modifications made to event properties not listed above. Find out about all event properties on the [Browser SDK repository][1].
 
-### Identify user sessions
+## Identify user sessions
+
 Adding user information to your RUM sessions makes it easy to:
 * Follow the journey of a given user
 * Know which users are the most impacted by errors
@@ -144,7 +145,7 @@ window.DD_RUM && window.DD_RUM.setUser({
 {{% /tab %}}
 {{< /tabs >}}
 
-### Sampling
+## Sampling
 
 By default, no sampling is applied on the number of collected sessions. To apply a relative sampling (in percent) to the number of sessions collected, use the `sampleRate` parameter when initializing RUM. The following example collects only 90% of all sessions on a given RUM application:
 
@@ -197,143 +198,7 @@ window.DD_RUM &&
 {{% /tab %}}
 {{< /tabs >}}
 
-**Note**: For a sampled out session, all page views and associated telemetry for that session aren't collected.
-
-## API available
-
-### Add global context
-
-Once Real User Monitoring (RUM) is initialized, add extra context to all RUM events collected from your application with the `addRumGlobalContext(key: string, value: any)` API:
-
-{{< tabs >}}
-{{% tab "NPM" %}}
-
-```javascript
-import { datadogRum } from '@datadog/browser-rum';
-
-datadogRum.addRumGlobalContext('<CONTEXT_KEY>', <CONTEXT_VALUE>);
-
-// Code example
-datadogRum.addRumGlobalContext('activity', {
-    hasPaid: true,
-    amount: 23.42
-});
-```
-
-{{% /tab %}}
-{{% tab "CDN async" %}}
-```javascript
-DD_RUM.onReady(function() {
-    DD_RUM.addRumGlobalContext('<CONTEXT_KEY>', '<CONTEXT_VALUE>');
-})
-
-// Code example
-DD_RUM.onReady(function() {
-    DD_RUM.addRumGlobalContext('activity', {
-        hasPaid: true,
-        amount: 23.42
-    });
-})
-```
-{{% /tab %}}
-{{% tab "CDN sync" %}}
-
-```javascript
-window.DD_RUM && window.DD_RUM.addRumGlobalContext('<CONTEXT_KEY>', '<CONTEXT_VALUE>');
-
-// Code example
-window.DD_RUM && window.DD_RUM.addRumGlobalContext('activity', {
-    hasPaid: true,
-    amount: 23.42
-});
-```
-
-{{% /tab %}}
-{{< /tabs >}}
-
-**Note**: Follow the [Datadog naming convention][3] for a better correlation of your data across the product.
-
-### Replace global context
-
-Once Real User Monitoring (RUM) is initialized, replace the default context for all your RUM events with the `setRumGlobalContext(context: Context)` API:
-
-{{< tabs >}}
-{{% tab "NPM" %}}
-
-```javascript
-import { datadogRum } from '@datadog/browser-rum';
-
-datadogRum.setRumGlobalContext({ '<CONTEXT_KEY>': '<CONTEXT_VALUE>' });
-
-// Code example
-datadogRum.setRumGlobalContext({
-    codeVersion: 34,
-});
-```
-
-{{% /tab %}}
-{{% tab "CDN async" %}}
-```javascript
-DD_RUM.onReady(function() {
-    DD_RUM.setRumGlobalContext({ '<CONTEXT_KEY>': '<CONTEXT_VALUE>' });
-})
-
-// Code example
-DD_RUM.onReady(function() {
-    DD_RUM.setRumGlobalContext({
-        codeVersion: 34,
-    })
-})
-```
-{{% /tab %}}
-{{% tab "CDN sync" %}}
-
-```javascript
-window.DD_RUM &&
-    DD_RUM.setRumGlobalContext({ '<CONTEXT_KEY>': '<CONTEXT_VALUE>' });
-
-// Code example
-window.DD_RUM &&
-    DD_RUM.setRumGlobalContext({
-        codeVersion: 34,
-    });
-```
-
-{{% /tab %}}
-{{< /tabs >}}
-
-**Note**: Follow the [Datadog naming convention][3] for a better correlation of your data across the product.
-
-### Read global context
-
-Once Real User Monitoring (RUM) is initialized, read the global context with the `getRumGlobalContext()` API:
-
-{{< tabs >}}
-{{% tab "NPM" %}}
-
-```javascript
-import { datadogRum } from '@datadog/browser-rum';
-
-const context = datadogRum.getRumGlobalContext();
-```
-
-{{% /tab %}}
-{{% tab "CDN async" %}}
-```javascript
-DD_RUM.onReady(function() {
-  var context = DD_RUM.getRumGlobalContext();
-});
-```
-{{% /tab %}}
-{{% tab "CDN sync" %}}
-
-```javascript
-var context = window.DD_RUM && DD_RUM.getRumGlobalContext();
-```
-
-{{% /tab %}}
-{{< /tabs >}}
-
+**Note**: For a sampled-out session, all page views and associated telemetry for that session aren't collected.
 
 
 ## Further Reading
@@ -341,6 +206,4 @@ var context = window.DD_RUM && DD_RUM.getRumGlobalContext();
 {{< partial name="whats-next/whats-next.html" >}}
 
 
-[1]: https://github.com/DataDog/browser-sdk
-[2]: https://github.com/DataDog/browser-sdk/blob/master/packages/rum/src/rumEvent.types.ts
-[3]: /logs/processing/attributes_naming_convention/#user-related-attributes
+[1]: https://github.com/DataDog/browser-sdk/blob/master/packages/rum/src/rumEvent.types.ts
