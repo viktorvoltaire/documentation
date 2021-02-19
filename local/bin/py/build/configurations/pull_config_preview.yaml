@@ -36,7 +36,7 @@
     contents:
 
     - action: integrations
-      branch: prod
+      branch: ruth/docs-1595
       globs:
       - integration/*/*_metadata.csv
       - integration/*/manifest.json
