@@ -65,21 +65,38 @@ Install the Datadog processor and exporter in your application and configure the
 
 ```python
 from opentelemetry import trace
-from opentelemetry.ext.datadog import (
+from opentelemetry.exporter.datadog import (
     DatadogExportSpanProcessor,
     DatadogSpanExporter,
 )
+from opentelemetry.exporter.datadog.propagator import DatadogFormat
+from opentelemetry.propagate import get_global_textmap, set_global_textmap
+from opentelemetry.propagators.composite import CompositeHTTPPropagator
 from opentelemetry.sdk.trace import TracerProvider
 
 trace.set_tracer_provider(TracerProvider())
-tracer = trace.get_tracer(__name__)
-
-exporter = DatadogSpanExporter(
-    agent_url="http://localhost:8126", service="example"
+trace.get_tracer_provider().add_span_processor(
+    DatadogExportSpanProcessor(
+        DatadogSpanExporter(
+            agent_url="http://localhost:8126", service="example-server"
+        )
+    )
 )
 
-span_processor = DatadogExportSpanProcessor(exporter)
-trace.get_tracer_provider().add_span_processor(span_processor)
+# append Datadog format for propagation to and from Datadog instrumented services
+global_textmap = get_global_textmap()
+if isinstance(global_textmap, CompositeHTTPPropagator) and not any(
+    isinstance(p, DatadogFormat) for p in global_textmap._propagators
+):
+    set_global_textmap(
+        CompositeHTTPPropagator(
+            global_textmap._propagators + [DatadogFormat()]
+        )
+    )
+else:
+    set_global_textmap(DatadogFormat())
+
+tracer = trace.get_tracer(__name__)
 
 
 with tracer.start_as_current_span("foo"):
