@@ -2,7 +2,7 @@ datadog:
   kubeStateMetricsEnabled: false
   processAgent:
     enabled: true
-  systemProbe:
+  networkMonitoring:
     enabled: true
 agents:
   rbac:
