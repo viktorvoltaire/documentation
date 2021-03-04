@@ -196,9 +196,9 @@ main_left:
     url: 'https://www.datadoghq.com/solutions/devops/'
     weight: -445
   - identifier: usecase-testing
-    name: 'Shift-Left Testing'
-    parent: 'solutions'
-    title: 'usecase'
+    name: Shift-Left Testing
+    parent: solutions
+    title: usecase
     url: 'https://www.datadoghq.com/solutions/shift-left-testing/'
     weight: -444
   - identifier: usecase-security
@@ -208,9 +208,9 @@ main_left:
     url: 'https://www.datadoghq.com/solutions/security-analytics/'
     weight: -443
   - identifier: usecase-compliance
-    name: 'Compliance for CIS Benchmarks'
-    parent: 'solutions'
-    title: 'usecase'
+    name: Compliance for CIS Benchmarks
+    parent: solutions
+    title: usecase
     url: 'https://www.datadoghq.com/solutions/security/cis-benchmarks/'
     weight: -442
   - identifier: usecase-hybrid
