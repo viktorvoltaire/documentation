@@ -154,12 +154,12 @@ Pour installer l'Agent Datadog sur votre cluster Kubernetes :
 
     | Métriques | Logs | APM | Processus | NPM | Linux                  | Windows                 |
     |---------|------|-----|---------|-----|------------------------|-------------------------|
-    | X       | X    | X   | X       |     | [Modèle de manifeste][3] | [Modèle de manifeste][4] |
-    | X       | X    | X   |         |     | [Modèle de manifeste][5] | [Modèle de manifeste][6] |
-    | X       | X    |     |         |     | [Modèle de manifeste][7] | [Modèle de manifeste][8] |
-    | X       |      | X   |         |     | [Modèle de manifeste][9] | [Modèle de manifeste][10] |
-    |         |      |     |         | X   | [Modèle de manifeste][11] | Aucun modèle             |
-    | X       |      |     |         |     | [Modèle de manifeste][12] | [Modèle de manifeste][13] |
+    | ✓       | ✓    | ✓   | ✓       |     | [Modèle de manifeste][3] | [Modèle de manifeste][4] |
+    | ✓       | ✓    | ✓   |         |     | [Modèle de manifeste][5] | [Modèle de manifeste][6] |
+    | ✓       | ✓    |     |         |     | [Modèle de manifeste][7] | [Modèle de manifeste][8] |
+    | ✓       |      | ✓   |         |     | [Modèle de manifeste][9] | [Modèle de manifeste][10] |
+    |         |      |     |         | ✓   | [Modèle de manifeste][11] | Aucun modèle             |
+    | ✓       |      |     |         |     | [Modèle de manifeste][12] | [Modèle de manifeste][13] |
 
      Pour activer toutes les fonctionnalités de collecte de traces, [vous devez suivre plusieurs étapes supplémentaires lors de la configuration des pods de votre application][14]. Consultez également les sections relatives aux [logs][15], à l'[APM][16], aux [processus][17] et à [la fonction Network Performance Monitoring][18] pour découvrir comment activer chacune de ces fonctionnalités.
 
